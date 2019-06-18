@@ -12,7 +12,11 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content', TextareaType::class)
+            ->add('content', TextareaType::class, array(
+               'attr' => array(
+                   'rows' => 5
+               )
+            ))
             //->add('author') ===> must be the user authenticated
         ;
     }
