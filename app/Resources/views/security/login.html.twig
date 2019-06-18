@@ -8,12 +8,12 @@
     <form class="form-inline" action="{{ path('login_check') }}" method="post">
         <div class="form-group mr-2">
             <label for="username">Nom d'utilisateur :</label>
-            <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}" />
+            <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}" required/>
         </div>
 
         <div class="form-group mr-2">
             <label for="password">Mot de passe :</label>
-            <input type="password" id="password" class="form-control" name="_password" />
+            <input type="password" id="password" class="form-control" name="_password" required/>
         </div>
         <button type="submit" class="btn btn-success">Se connecter</button>
     </form>
