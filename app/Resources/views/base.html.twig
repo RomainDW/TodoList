@@ -37,15 +37,21 @@
 
         <!-- Page Content -->
         <div class="container">
-            <div class="row">
-                <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a>
+            <div class="row mb-2">
+                <div class="col-md-4">
+                    <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a>
+                </div>
 
                 {% if app.user %}
-                <a href="{{ path('logout') }}" class="pull-right btn btn-danger">Se déconnecter</a>
+                    <div class="col-md-4">
+                        <a href="{{ path('logout') }}" class="pull-right btn btn-danger">Se déconnecter</a>
+                    </div>
                 {% endif %}
 
                 {% if not app.user and 'login' != app.request.attributes.get('_route') %}
-                <a href="{{ path('login') }}" class="btn btn-success">Se connecter</a>
+                    <div class="col-md-4">
+                        <a href="{{ path('login') }}" class="btn btn-success">Se connecter</a>
+                    </div>
                 {% endif %}
             </div>
 
