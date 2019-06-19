@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends Controller
 {
     /**
+     * Show the list of tasks.
+     *
      * @Route("/tasks", name="task_list")
      */
     public function listAction()
@@ -19,6 +21,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Show the task creation page.
+     *
      * @Route("/tasks/create", name="task_create")
      */
     public function createAction(Request $request)
@@ -43,6 +47,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Show the task edition page.
+     *
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
     public function editAction(Task $task, Request $request)
@@ -66,6 +72,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Toggle the task status (done or not done) by ID.
+     *
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
     public function toggleTaskAction(Task $task)
@@ -83,6 +91,8 @@ class TaskController extends Controller
     }
 
     /**
+     * Delete a task by ID
+     *
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
     public function deleteTaskAction(Task $task)
