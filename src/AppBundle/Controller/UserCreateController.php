@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\DTO\UserDTO;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,15 +24,18 @@ class UserCreateController extends Controller
      */
     public function createAction(Request $request)
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+
+            /** @var UserDTO $userDTO */
+            $userDTO = $form->getData();
+            $user = new User($userDTO->username, $userDTO->password, $userDTO->email);
+            // $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
+            // The password is encoded in the entity
 
             $em->persist($user);
             $em->flush();

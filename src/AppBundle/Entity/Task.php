@@ -49,6 +49,12 @@ class Task
         $this->content = $content;
     }
 
+    public function update($title, $content)
+    {
+        $this->title = $title;
+        $this->content = $content;
+    }
+
     public function getId()
     {
         return $this->id;

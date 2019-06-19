@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\DTO\UserDTO;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,13 +23,17 @@ class UserEditController extends Controller
      */
     public function editAction(User $user, Request $request)
     {
-        $form = $this->createForm(UserType::class, $user);
+        $userDTO = new UserDTO();
+        $userDTO->createFromUser($user);
+
+        $form = $this->createForm(UserType::class, $userDTO);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            /** @var UserDTO $userDTO */
+            $userUpdateDTO = $form->getData();
+            $user->update($userUpdateDTO->username, $userUpdateDTO->password, $userUpdateDTO->email);
 
             $this->getDoctrine()->getManager()->flush();
 

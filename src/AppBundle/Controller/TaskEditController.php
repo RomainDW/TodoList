@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
 use AppBundle\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,11 +25,17 @@ class TaskEditController extends Controller
      */
     public function editAction(Task $task, Request $request)
     {
-        $form = $this->createForm(TaskType::class, $task);
+        $taskDTO = new TaskDTO();
+        $taskDTO->createFromTask($task);
+        $form = $this->createForm(TaskType::class, $taskDTO);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            /** @var TaskDTO $taskUpdateDTO */
+            $taskUpdateDTO = $form->getData();
+            $task->update($taskUpdateDTO->title, $taskUpdateDTO->content);
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');
