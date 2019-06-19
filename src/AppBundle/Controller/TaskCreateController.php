@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
 use AppBundle\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,13 +24,17 @@ class TaskCreateController extends Controller
      */
     public function createAction(Request $request)
     {
-        $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
+        $form = $this->createForm(TaskType::class);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            /** @var TaskDTO $taskDTO */
+            $taskDTO = $form->getData();
+
+            $task = new Task($taskDTO->title, $taskDTO->content);
 
             $em->persist($task);
             $em->flush();
