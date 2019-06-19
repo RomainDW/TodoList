@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
     /**
+     * Show the list of Users.
+     *
      * @Route("/users", name="user_list")
      */
     public function listAction()
@@ -19,6 +21,8 @@ class UserController extends Controller
     }
 
     /**
+     * Show the user creation page.
+     *
      * @Route("/users/create", name="user_create")
      */
     public function createAction(Request $request)
@@ -45,6 +49,8 @@ class UserController extends Controller
     }
 
     /**
+     * Show the user edition page
+     *
      * @Route("/users/{id}/edit", name="user_edit")
      */
     public function editAction(User $user, Request $request)
