@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class SecurityController extends Controller
 {
     /**
+     * Show the login page.
+     *
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request)
