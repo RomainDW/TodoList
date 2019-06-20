@@ -35,6 +35,14 @@ class TaskService
         return $task;
     }
 
+    public function updateTask(TaskDTO $taskDTO, Task $task)
+    {
+        $task->update(
+            $taskDTO->title,
+            $taskDTO->content
+        );
+    }
+
     public function save(Task $task)
     {
         $manager = $this->doctrine->getManager();
