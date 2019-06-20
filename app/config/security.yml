@@ -3,10 +3,10 @@ security:
         AppBundle\Entity\User: bcrypt
 
     providers:
-        doctrine:
+        app_user_provider:
             entity:
-                class: AppBundle:User
-                property: username
+                class: AppBundle\Entity\User
+                property: email
 
     firewalls:
         dev:
@@ -16,12 +16,10 @@ security:
         main:
             anonymous: ~
             pattern: ^/
-            form_login:
-                login_path: login
-                check_path: login_check
-                always_use_default_target_path:  true
-                default_target_path:  /
             logout: ~
+            guard:
+                authenticators:
+                    - AppBundle\Security\LoginFormAuthenticator
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
