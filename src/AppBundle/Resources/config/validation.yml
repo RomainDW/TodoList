@@ -28,10 +28,6 @@ AppBundle\DTO\TaskDTO:
 
 
 AppBundle\Entity\User:
-  constraints:
-    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
-        fields: [email]
-        message: Cette adresse email est déjà utilisée.
   properties:
     username:
       - NotBlank:
