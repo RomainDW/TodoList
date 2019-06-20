@@ -21,7 +21,7 @@ class TaskType extends AbstractType
                 'label' => 'Contenu',
                 'attr' => array(
                    'rows' => 5
-                )
+                ),
             ))
             //->add('author') ===> must be the user authenticated
         ;

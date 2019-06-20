@@ -1,0 +1,76 @@
+AppBundle\Entity\Task:
+  properties:
+    title:
+      - NotBlank:
+          message: Vous devez saisir un titre.
+      - Length:
+          max: 50
+          maxMessage: Le titre ne peut pas contenir plus de {{ limit }} caractères
+    content:
+      - NotBlank:
+          message: Vous devez saisir du contenu.
+    isDone:
+      - Type:
+          type: bool
+          message: La valeur {{ value }} n'est pas un {{ type }} valide.
+
+AppBundle\DTO\TaskDTO:
+  properties:
+    title:
+      - NotBlank:
+          message: Vous devez saisir un titre.
+      - Length:
+          max: 50
+          maxMessage: Le titre ne peut pas contenir plus de {{ limit }} caractères
+    content:
+      - NotBlank:
+          message: Vous devez saisir du contenu.
+
+
+AppBundle\Entity\User:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: [email]
+        message: Cette adresse email est déjà utilisée.
+  properties:
+    username:
+      - NotBlank:
+          message: Vous devez saisir un nom d'utilisateur.
+      - Length:
+          max: 25
+          min: 2
+          maxMessage: Votre prénom ne peut pas contenir plus de {{ limit }} caractères
+          minMessage: Votre prénom ne peut pas contenir moins de {{ limit }} caractères
+    password:
+      - NotBlank:
+          message: Vous devez saisir un mot de passe
+    email:
+      - NotBlank:
+          message: Vous devez saisir une adresse email.
+      - Email:
+          message: Le format de l'adresse n'est pas correcte.
+          checkMX: true
+
+AppBundle\DTO\UserDTO:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: [email]
+        message: Cette adresse email est déjà utilisée.
+  properties:
+    username:
+      - NotBlank:
+          message: Vous devez saisir un nom d'utilisateur.
+      - Length:
+          max: 25
+          min: 2
+          maxMessage: Votre prénom ne peut pas contenir plus de {{ limit }} caractères
+          minMessage: Votre prénom ne peut pas contenir moins de {{ limit }} caractères
+    password:
+      - NotBlank:
+          message: Vous devez saisir un mot de passe
+    email:
+      - NotBlank:
+          message: Vous devez saisir une adresse email.
+      - Email:
+          message: Le format de l'adresse n'est pas correcte.
+          checkMX: true
