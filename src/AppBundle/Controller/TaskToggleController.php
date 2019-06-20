@@ -14,7 +14,7 @@ class TaskToggleController extends Controller
     /**
      * Toggle the task status (done or not done) by ID.
      *
-     * @Route("/tasks/{id}/toggle", name="task_toggle")
+     * @Route("/tasks/{id}/toggle", name="task_toggle", methods={"POST"})
      * @param Task $task
      * @return RedirectResponse
      */

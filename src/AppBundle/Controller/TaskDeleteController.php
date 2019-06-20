@@ -15,7 +15,7 @@ class TaskDeleteController extends Controller
     /**
      * Delete a task by ID
      *
-     * @Route("/tasks/{id}/delete", name="task_delete")
+     * @Route("/tasks/{id}/delete", name="task_delete", methods={"POST"})
      * @param Request $request
      * @param TaskService $taskService
      * @return RedirectResponse
