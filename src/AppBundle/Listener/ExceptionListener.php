@@ -4,6 +4,7 @@
 namespace AppBundle\Listener;
 
 use AppBundle\Exception\TaskNotFoundException;
+use AppBundle\Exception\UserNotFoundException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
@@ -38,6 +39,14 @@ class ExceptionListener
             $this->flashBag->add('error', $exception->getMessage());
 
             $url = $this->router->generate('task_list');
+            $response =  new RedirectResponse($url);
+
+            $event->setResponse($response);
+
+        } elseif ($exception instanceof UserNotFoundException) {
+            $this->flashBag->add('error', $exception->getMessage());
+
+            $url = $this->router->generate('user_list');
             $response =  new RedirectResponse($url);
 
             $event->setResponse($response);
