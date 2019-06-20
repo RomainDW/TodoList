@@ -6,6 +6,7 @@ namespace AppBundle\Service;
 
 use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
+use AppBundle\Exception\TaskNotFoundException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 class TaskService
@@ -46,5 +47,22 @@ class TaskService
         $manager = $this->doctrine->getManager();
         $manager->remove($task);
         $manager->flush();
+    }
+
+    /**
+     * @param $id
+     * @return object|null
+     * @throws TaskNotFoundException
+     */
+    public function find($id)
+    {
+        $manager = $this->doctrine->getManager();
+        $task = $manager->getRepository(Task::class)->find($id);
+
+        if (is_null($task)) {
+            throw new TaskNotFoundException("La tâche n'existe pas.");
+        }
+
+        return $task;
     }
 }

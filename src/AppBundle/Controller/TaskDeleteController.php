@@ -24,11 +24,7 @@ class TaskDeleteController extends Controller
     public function deleteTaskAction(Request $request, TaskService $taskService)
     {
         /** @var Task $task */
-        $task = $this->getDoctrine()->getRepository(Task::class)->find($request->attributes->get('id'));
-
-        if (is_null($task)) {
-            throw new TaskNotFoundException("La tâche n'existe pas.");
-        }
+        $task = $taskService->find($request->attributes->get('id'));
 
         $taskService->remove($task);
 
