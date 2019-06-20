@@ -3,10 +3,8 @@
 
 namespace AppBundle\Controller;
 
-
-use AppBundle\DTO\TaskDTO;
-use AppBundle\Entity\Task;
 use AppBundle\Form\TaskType;
+use AppBundle\FormHandler\CreateTaskFormHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,27 +18,17 @@ class TaskCreateController extends Controller
      *
      * @Route("/tasks/create", name="task_create")
      * @param Request $request
+     * @param CreateTaskFormHandler $formHandler
      * @return RedirectResponse|Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, CreateTaskFormHandler $formHandler)
     {
         $form = $this->createForm(TaskType::class);
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            /** @var TaskDTO $taskDTO */
-            $taskDTO = $form->getData();
-
-            $task = new Task($taskDTO->title, $taskDTO->content);
-
-            $em->persist($task);
-            $em->flush();
-
+        if ($formHandler->handle($form)) {
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
-
             return $this->redirectToRoute('task_list');
         }
 
