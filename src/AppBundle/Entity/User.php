@@ -44,6 +44,30 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * User constructor.
+     * @param $username
+     * @param $password
+     * @param $email
+     * @param array $roles
+     */
+    public function __construct($username, $password, $email, array $roles = [])
+    {
+        $this->username = $username;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
+        $this->email = $email;
+        $this->roles = $roles;
+    }
+
+    public function update($username, $password, $email, array $roles = [])
+    {
+        $this->username = $username;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
+        $this->email = $email;
+        $this->roles = $roles;
+    }
+
+
     public function getId()
     {
         return $this->id;
@@ -52,11 +76,6 @@ class User implements UserInterface
     public function getUsername()
     {
         return $this->username;
-    }
-
-    public function setUsername($username)
-    {
-        $this->username = $username;
     }
 
     public function getSalt()
@@ -69,19 +88,9 @@ class User implements UserInterface
         return $this->password;
     }
 
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
     public function getEmail()
     {
         return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
     }
 
     public function getRoles()

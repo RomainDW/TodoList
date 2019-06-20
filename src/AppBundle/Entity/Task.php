@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Datetime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -40,10 +41,18 @@ class Task
      */
     private $isDone;
 
-    public function __construct()
+    public function __construct($title, $content)
     {
-        $this->createdAt = new \Datetime();
+        $this->createdAt = new Datetime();
         $this->isDone = false;
+        $this->title = $title;
+        $this->content = $content;
+    }
+
+    public function update($title, $content)
+    {
+        $this->title = $title;
+        $this->content = $content;
     }
 
     public function getId()
@@ -51,34 +60,14 @@ class Task
         return $this->id;
     }
 
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
     public function getTitle()
     {
         return $this->title;
     }
 
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
     public function getContent()
     {
         return $this->content;
-    }
-
-    public function setContent($content)
-    {
-        $this->content = $content;
     }
 
     public function isDone()

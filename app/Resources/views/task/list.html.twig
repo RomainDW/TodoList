@@ -21,12 +21,12 @@
                 </div>
                 <div class="task-actions">
                     <a href="{{ path('task_edit', {'id' : task.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
-                    <form action="{{ path('task_toggle', {'id' : task.id }) }}">
+                    <form action="{{ path('task_toggle', {'id' : task.id }) }}" method="post">
                         <button class="btn btn-success btn-sm">
                             {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
                         </button>
                     </form>
-                    <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                    <form action="{{ path('task_delete', {'id' : task.id }) }}" method="post">
                         <button class="btn btn-danger btn-sm">Supprimer</button>
                     </form>
                 </div>
