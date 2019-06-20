@@ -3,10 +3,8 @@
 
 namespace AppBundle\Controller;
 
-
-use AppBundle\DTO\UserDTO;
-use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+use AppBundle\FormHandler\CreateUserFormHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,28 +18,16 @@ class UserCreateController extends Controller
      *
      * @Route("/users/create", name="user_create")
      * @param Request $request
+     * @param CreateUserFormHandler $formHandler
      * @return RedirectResponse|Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, CreateUserFormHandler $formHandler)
     {
         $form = $this->createForm(UserType::class);
-
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            /** @var UserDTO $userDTO */
-            $userDTO = $form->getData();
-            $user = new User($userDTO->username, $userDTO->password, $userDTO->email);
-            // $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
-            // The password is encoded in the entity
-
-            $em->persist($user);
-            $em->flush();
-
+        if ($formHandler->handle($form)) {
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
-
             return $this->redirectToRoute('user_list');
         }
 

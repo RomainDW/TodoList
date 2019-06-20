@@ -4,7 +4,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\DTO\UserDTO;
 use AppBundle\Entity\User;
+use AppBundle\Exception\UserNotFoundException;
 use AppBundle\Form\UserType;
+use AppBundle\FormHandler\EditUserFormHandler;
+use AppBundle\Service\UserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,28 +20,24 @@ class UserEditController extends Controller
      * Show the user edition page
      *
      * @Route("/users/{id}/edit", name="user_edit")
-     * @param User $user
      * @param Request $request
+     * @param EditUserFormHandler $formHandler
+     * @param UserService $userService
      * @return RedirectResponse|Response
+     * @throws UserNotFoundException
      */
-    public function editAction(User $user, Request $request)
+    public function editAction(Request $request, EditUserFormHandler $formHandler, UserService $userService)
     {
+        /** @var User $user */
+        $user = $userService->find($request->attributes->get('id'));
         $userDTO = new UserDTO();
         $userDTO->createFromUser($user);
 
         $form = $this->createForm(UserType::class, $userDTO);
-
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            /** @var UserDTO $userDTO */
-            $userUpdateDTO = $form->getData();
-            $user->update($userUpdateDTO->username, $userUpdateDTO->password, $userUpdateDTO->email);
-
-            $this->getDoctrine()->getManager()->flush();
-
+        if ($formHandler->handle($form, $user)) {
             $this->addFlash('success', "L'utilisateur a bien été modifié");
-
             return $this->redirectToRoute('user_list');
         }
 
