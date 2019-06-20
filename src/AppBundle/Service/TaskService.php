@@ -65,4 +65,11 @@ class TaskService
 
         return $task;
     }
+
+    public function toggle(Task $task)
+    {
+        $task->toggle(!$task->isDone());
+        $manager = $this->doctrine->getManager();
+        $manager->flush();
+    }
 }
