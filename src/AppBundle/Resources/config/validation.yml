@@ -9,6 +9,9 @@ AppBundle\Entity\Task:
     content:
       - NotBlank:
           message: Vous devez saisir du contenu.
+      - Length:
+          max: 1000
+          maxMessage: Le contenu ne peut pas contenir plus de {{ limit }} caractères
     isDone:
       - Type:
           type: bool
@@ -25,6 +28,9 @@ AppBundle\DTO\TaskDTO:
     content:
       - NotBlank:
           message: Vous devez saisir du contenu.
+      - Length:
+          max: 1000
+          maxMessage: Le contenu ne peut pas contenir plus de {{ limit }} caractères
 
 
 AppBundle\Entity\User:
