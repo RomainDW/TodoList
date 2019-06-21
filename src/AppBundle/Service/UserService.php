@@ -31,10 +31,13 @@ class UserService
      */
     public function initUser(UserDTO $userDTO)
     {
+
+//        var_dump($userDTO->roles);die();
         $user = new User(
             $userDTO->username,
             $userDTO->password,
-            $userDTO->email
+            $userDTO->email,
+            $userDTO->roles
         );
 
         return $user;
@@ -52,7 +55,8 @@ class UserService
         $user->update(
             $userDTO->username,
             $userDTO->password,
-            $userDTO->email
+            $userDTO->email,
+            $userDTO->roles
         );
     }
 

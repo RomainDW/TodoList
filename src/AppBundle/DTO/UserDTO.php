@@ -11,7 +11,7 @@ class UserDTO
     public $username;
     public $password;
     public $email;
-    public $roles = [];
+    public $roles;
 
     public function createFromUser(User $user)
     {

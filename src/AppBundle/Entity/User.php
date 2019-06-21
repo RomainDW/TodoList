@@ -51,7 +51,7 @@ class User implements UserInterface
      * @param $email
      * @param array $roles
      */
-    public function __construct($username, $password, $email, array $roles = [])
+    public function __construct($username, $password, $email, array $roles = ['ROLE_USER'])
     {
         $this->tasks = new ArrayCollection();
         $this->username = $username;
