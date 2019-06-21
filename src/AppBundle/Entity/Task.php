@@ -6,7 +6,7 @@ use Datetime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
  * @ORM\Table
  */
 class Task

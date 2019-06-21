@@ -41,5 +41,9 @@
                 </div>
             </div>
         {% endfor %}
+
+        {% if numberOfPages > 1 %}
+            {% include 'task/components/pagination.html.twig' %}
+        {% endif %}
     </div>
 {% endblock %}
