@@ -26,6 +26,8 @@ class TaskDeleteController extends Controller
         /** @var Task $task */
         $task = $taskService->find($request->attributes->get('id'));
 
+        $this->denyAccessUnlessGranted('delete', $task, 'Cette tâche ne vous appartient pas.');
+
         $taskService->remove($task);
 
         $this->addFlash('success', 'La tâche a bien été supprimée.');
