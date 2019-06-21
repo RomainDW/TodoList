@@ -15,7 +15,7 @@ services:
 
   AppBundle\:
     resource: '../../src/AppBundle/*'
-    exclude: '../../src/AppBundle/{Entity,Repository}'
+    exclude: '../../src/AppBundle/{Entity}'
 
   AppBundle\Listener\ExceptionListener:
     tags:

@@ -1,0 +1,19 @@
+<nav class="col-md-12">
+    <ul class="pagination">
+        <li class="{% if app.request.get('page') == null or app.request.get('page') == 1 or app.request.get('page') == 0 %}disabled{% endif %}">
+            <a {% if app.request.get('page') != null and app.request.get('page') != 1 and app.request.get('page') != 0 %}href="{{ path('task_list', {'page' : app.request.get('page') - 1}) }}"{% endif %} aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% for i in 1..numberOfPages %}
+            <li {% if app.request.get('page') == i or app.request.get('page') == 0 and i == 1 %}class="active"{% endif %}>
+                <a href="{{ path('task_list', {'page' : i}) }}">{{ i }}</a>
+            </li>
+        {% endfor %}
+        <li class="{% if app.request.get('page') == numberOfPages %}disabled{% endif %}">
+            <a {% if app.request.get('page') != numberOfPages %}href="{% if app.request.get('page') == null %}{{ path('task_list', {'page' : 2}) }}{% else %}{{ path('task_list', {'page' : app.request.get('page') + 1}) }}{% endif %}"{% endif %} aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
