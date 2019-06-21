@@ -38,12 +38,19 @@ class Task
      */
     private $isDone;
 
-    public function __construct($title, $content)
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    public function __construct($title, $content, User $user)
     {
         $this->createdAt = new Datetime();
         $this->isDone = false;
         $this->title = $title;
         $this->content = $content;
+        $this->user = $user;
     }
 
     public function update($title, $content)
@@ -75,5 +82,16 @@ class Task
     public function toggle($flag)
     {
         $this->isDone = $flag;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
     }
 }

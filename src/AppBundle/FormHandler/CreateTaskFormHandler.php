@@ -4,6 +4,7 @@
 namespace AppBundle\FormHandler;
 
 
+use AppBundle\Entity\User;
 use AppBundle\Service\TaskService;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -37,10 +38,10 @@ class CreateTaskFormHandler
         $this->flashBag = $flashBag;
     }
 
-    public function handle(FormInterface $form)
+    public function handle(FormInterface $form, User $user)
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            $task = $this->taskService->initTask($form->getData());
+            $task = $this->taskService->initTask($form->getData(), $user);
             if (count($errors = $this->validator->validate($task))) {
                 foreach ($errors as $error) {
                     $this->flashBag->add('error', $error->getMessage());

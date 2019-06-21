@@ -6,6 +6,7 @@ namespace AppBundle\Service;
 
 use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
+use AppBundle\Entity\User;
 use AppBundle\Exception\TaskNotFoundException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -25,11 +26,12 @@ class TaskService
         $this->doctrine = $doctrine;
     }
 
-    public function initTask(TaskDTO $taskDTO)
+    public function initTask(TaskDTO $taskDTO, User $user)
     {
         $task = new Task(
             $taskDTO->title,
-            $taskDTO->content
+            $taskDTO->content,
+            $user
         );
 
         return $task;

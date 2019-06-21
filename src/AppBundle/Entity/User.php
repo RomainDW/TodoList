@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -39,6 +40,11 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Task", mappedBy="user", orphanRemoval=true)
+     */
+    private $tasks;
+
+    /**
      * User constructor.
      * @param $username
      * @param $password
@@ -47,13 +53,14 @@ class User implements UserInterface
      */
     public function __construct($username, $password, $email, array $roles = [])
     {
+        $this->tasks = new ArrayCollection();
         $this->username = $username;
         $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->email = $email;
         $this->roles = $roles;
     }
 
-    public function update($username, $password, $email, array $roles = [])
+    public function update($username, $password, $email, array $roles = ['ROLE_USER'])
     {
         $this->username = $username;
         $this->password = password_hash($password, PASSWORD_BCRYPT);
@@ -99,5 +106,25 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function addTask(Task $task)
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setUser($this);
+        }
+        return $this;
+    }
+    public function removeTask(Task $task)
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            // set the owning side to null (unless already changed)
+            if ($task->getUser() === $this) {
+                $task->setUser(null);
+            }
+        }
+        return $this;
     }
 }
