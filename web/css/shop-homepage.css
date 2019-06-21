@@ -85,3 +85,24 @@ h1 {
 .task-is-not-done {
     border-color: #d43f3a;
 }
+
+@media (min-width: 768px) {
+    .row.equal {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.row.equal .thumbnail {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.row.equal .thumbnail .task-actions {
+    margin-top: auto;
+}
+
+.row.equal [class*="col-"] {
+    margin-bottom: 30px;
+}
