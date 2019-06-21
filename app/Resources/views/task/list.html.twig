@@ -8,7 +8,7 @@
             <a href="{{ path('task_create') }}" class="btn btn-info pull-right">Créer une tâche</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row equal">
         {% for task in tasks %}
         <div class="col-sm-6 col-lg-4 col-md-4">
             <div class="thumbnail {% if task.isDone %}task-is-done{% else %}task-is-not-done{%  endif %}">
