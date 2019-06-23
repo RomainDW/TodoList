@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,6 +17,11 @@ class SecurityController extends Controller
      */
     public function loginAction()
     {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $this->addFlash('warning', 'Vous êtes déjà connecté');
+            return new RedirectResponse($this->generateUrl('homepage'));
+        }
+
         $authenticationUtils = $this->get('security.authentication_utils');
 
         $error = $authenticationUtils->getLastAuthenticationError();
