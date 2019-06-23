@@ -3,7 +3,6 @@
 
 namespace Tests\AppBundle\FormHandler;
 
-use AppBundle\FormHandler\CreateUserFormHandler;
 use AppBundle\FormHandler\EditUserFormHandler;
 use AppBundle\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
