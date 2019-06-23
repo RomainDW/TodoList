@@ -16,7 +16,8 @@ security:
         main:
             anonymous: ~
             pattern: ^/
-            logout: ~
+            logout:
+                path: logout
             guard:
                 authenticators:
                     - AppBundle\Security\LoginFormAuthenticator
