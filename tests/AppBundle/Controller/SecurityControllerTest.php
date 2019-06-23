@@ -22,5 +22,6 @@ class SecurityControllerTest extends UnitTestCase
         $this->client->request('GET', '/login');
 
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertTrue($this->client->getResponse()->isRedirect('/'));
     }
 }
