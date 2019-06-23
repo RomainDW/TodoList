@@ -42,7 +42,6 @@ class ExceptionListener
             $response =  new RedirectResponse($url);
 
             $event->setResponse($response);
-
         } elseif ($exception instanceof UserNotFoundException) {
             $this->flashBag->add('error', $exception->getMessage());
 

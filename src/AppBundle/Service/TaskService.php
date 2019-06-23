@@ -3,7 +3,6 @@
 
 namespace AppBundle\Service;
 
-
 use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;

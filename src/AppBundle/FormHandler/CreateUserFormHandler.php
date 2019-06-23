@@ -3,7 +3,6 @@
 
 namespace AppBundle\FormHandler;
 
-
 use AppBundle\Service\UserService;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;

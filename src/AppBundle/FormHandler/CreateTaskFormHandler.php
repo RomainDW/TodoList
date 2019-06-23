@@ -3,7 +3,6 @@
 
 namespace AppBundle\FormHandler;
 
-
 use AppBundle\Entity\User;
 use AppBundle\Service\TaskService;
 use Symfony\Component\Form\FormInterface;

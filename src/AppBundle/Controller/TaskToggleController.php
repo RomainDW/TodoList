@@ -3,7 +3,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Task;
 use AppBundle\Exception\TaskNotFoundException;
 use AppBundle\Service\TaskService;

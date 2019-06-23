@@ -3,7 +3,6 @@
 
 namespace AppBundle\DTO;
 
-
 use AppBundle\Entity\Task;
 
 class TaskDTO

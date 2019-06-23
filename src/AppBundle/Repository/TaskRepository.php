@@ -3,7 +3,6 @@
 
 namespace AppBundle\Repository;
 
-
 use AppBundle\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;

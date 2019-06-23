@@ -3,7 +3,6 @@
 
 namespace AppBundle\DTO;
 
-
 use AppBundle\Entity\User;
 
 class UserDTO

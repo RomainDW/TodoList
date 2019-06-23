@@ -3,7 +3,6 @@
 
 namespace AppBundle\Security;
 
-
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
 use LogicException;

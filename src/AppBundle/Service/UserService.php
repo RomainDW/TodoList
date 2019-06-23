@@ -3,7 +3,6 @@
 
 namespace AppBundle\Service;
 
-
 use AppBundle\DTO\UserDTO;
 use AppBundle\Entity\User;
 use AppBundle\Exception\UserNotFoundException;

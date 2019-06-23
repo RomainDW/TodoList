@@ -3,7 +3,6 @@
 
 namespace AppBundle\Security;
 
-
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -90,21 +89,23 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             $credentials['email']
         );
         return $credentials;
-    }/**
- * Return a UserInterface object based on the credentials.
- *
- * The *credentials* are the return value from getCredentials()
- *
- * You may throw an AuthenticationException if you wish. If you return
- * null, then a UsernameNotFoundException is thrown for you.
- *
- * @param mixed $credentials
- * @param UserProviderInterface $userProvider
- *
- * @return UserInterface|null
- * @throws AuthenticationException
- *
- */
+    }
+
+    /**
+     * Return a UserInterface object based on the credentials.
+     *
+     * The *credentials* are the return value from getCredentials()
+     *
+     * You may throw an AuthenticationException if you wish. If you return
+     * null, then a UsernameNotFoundException is thrown for you.
+     *
+     * @param mixed $credentials
+     * @param UserProviderInterface $userProvider
+     *
+     * @return UserInterface|null
+     * @throws AuthenticationException
+     *
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);

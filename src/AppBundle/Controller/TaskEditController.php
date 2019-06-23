@@ -3,7 +3,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
 use AppBundle\Exception\TaskNotFoundException;
