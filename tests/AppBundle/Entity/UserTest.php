@@ -16,8 +16,8 @@ class UserTest extends TestCase
 
         $user = new User($username, $password, $email);
 
-        static::assertSame($username, $user->getUsername());
-        static::assertNotSame($password, $user->getPassword());// password is hashed
-        static::assertSame($email, $user->getEmail());
+        $this->assertSame($username, $user->getUsername());
+        $this->assertNotSame($password, $user->getPassword());// password is hashed
+        $this->assertSame($email, $user->getEmail());
     }
 }

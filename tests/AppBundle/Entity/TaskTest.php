@@ -21,8 +21,8 @@ class TaskTest extends TestCase
 
         $task = new Task($title, $content, $user);
 
-        static::assertSame($title, $task->getTitle());
-        static::assertSame($content, $task->getContent());
-        static::assertSame($user, $task->getUser());
+        $this->assertSame($title, $task->getTitle());
+        $this->assertSame($content, $task->getContent());
+        $this->assertSame($user, $task->getUser());
     }
 }

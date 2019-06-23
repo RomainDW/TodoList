@@ -6,9 +6,9 @@ namespace Tests\AppBundle\DTO;
 use AppBundle\DTO\TaskDTO;
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
-use Tests\AppBundle\UnitTestCase;
+use PHPUnit\Framework\TestCase;
 
-class TaskDTOTest extends UnitTestCase
+class TaskDTOTest extends TestCase
 {
     public function testCreateFromTask()
     {
