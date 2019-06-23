@@ -26,7 +26,9 @@ class TaskDeleteControllerTest extends UnitTestCase
 
     public function testTaskNotFound()
     {
+        $this->logIn();
         $this->client->request('POST', '/tasks/999/delete');
-        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertTrue($this->client->getResponse()->isRedirect('/tasks'));
     }
 }
