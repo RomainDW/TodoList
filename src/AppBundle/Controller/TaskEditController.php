@@ -39,8 +39,7 @@ class TaskEditController extends Controller
 
         if ($editTaskFormHandler->handle($form, $task)) {
             $this->addFlash('success', 'La tâche a bien été modifiée.');
-            $page = $request->attributes->get('page');
-            return $this->redirectToRoute('task_list', ['page' => $page]);
+            return $this->redirectToRoute('task_list');
         }
 
         return $this->render('task/edit.html.twig', [

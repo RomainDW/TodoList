@@ -10,9 +10,9 @@ class TaskDTO
     public $title;
     public $content;
 
-    public function createFromTask(Task $user)
+    public function createFromTask(Task $task)
     {
-        $this->title = $user->getTitle();
-        $this->content = $user->getContent();
+        $this->title = $task->getTitle();
+        $this->content = $task->getContent();
     }
 }
