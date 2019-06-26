@@ -31,7 +31,7 @@ class UnitTestCase extends KernelTestCase
 
         $entityManager = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         /** @var User $user */
-        $user = $entityManager->getRepository('AppBundle:User')->findOneBy(['email' => 'test@email.com']);
+        $user = $entityManager->getRepository('AppBundle:User')->findOneBy(['email' => 'admin@email.com.com']);
 
         $token = new PostAuthenticationGuardToken($user, $firewall, $roles);
         $session->set('_security_'.$firewall, serialize($token));

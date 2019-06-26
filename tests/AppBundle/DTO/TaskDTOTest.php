@@ -16,7 +16,7 @@ class TaskDTOTest extends TestCase
         $user = new User(
             'test',
             'test',
-            'test@email.test'
+            'admin@email.com.test'
         );
         $task = new Task(
             'test',

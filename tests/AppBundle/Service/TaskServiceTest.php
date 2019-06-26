@@ -34,7 +34,7 @@ class TaskServiceTest extends KernelTestCase
         $user = new User(
             'test',
             'test',
-            'test@email.com'
+            'admin@email.com.com'
         );
 
         $task = $this->systemUnderTest->initTask($taskDTO, $user);
@@ -54,7 +54,7 @@ class TaskServiceTest extends KernelTestCase
         $user = new User(
             'test',
             'test',
-            'test@email.com'
+            'admin@email.com.com'
         );
 
         $task = new Task('test', 'test', $user);

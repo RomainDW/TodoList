@@ -16,7 +16,7 @@ class TaskTest extends TestCase
         $user = new User(
             'test',
             'test',
-            'test@email.com'
+            'admin@email.com.com'
         );
 
         $task = new Task($title, $content, $user);
