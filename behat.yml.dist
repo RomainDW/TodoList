@@ -1,0 +1,18 @@
+default:
+    suites:
+        web:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - FeatureContext
+                - DoctrineContext:
+                    entityManager: '@doctrine.orm.entity_manager'
+            paths: ['%paths.base%/features/']
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                class: AppKernel
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
