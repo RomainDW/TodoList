@@ -44,10 +44,10 @@ class Task
      */
     private $user;
 
-    public function __construct($title, $content, User $user)
+    public function __construct($title, $content, User $user, $isDone = false)
     {
         $this->createdAt = new Datetime();
-        $this->isDone = false;
+        $this->isDone = $isDone;
         $this->title = $title;
         $this->content = $content;
         $this->user = $user;
