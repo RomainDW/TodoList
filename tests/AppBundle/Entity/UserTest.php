@@ -12,7 +12,7 @@ class UserTest extends TestCase
     {
         $username = 'test';
         $password = 'test';
-        $email = 'test@email.com';
+        $email = 'admin@email.com.com';
 
         $user = new User($username, $password, $email);
 

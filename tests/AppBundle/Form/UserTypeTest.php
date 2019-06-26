@@ -45,7 +45,7 @@ class UserTypeTest extends TypeTestCase
 //        $formData = [
 //            'username' => 'test',
 //            'password' => 'test',
-//            'email' => 'test@email.com',
+//            'email' => 'admin@email.com.com',
 //            'roles' => ['ROLE_USER'],
 //        ];
 //        $objectToCompare = new UserDTO();

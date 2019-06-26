@@ -28,14 +28,14 @@ class UserServiceTest extends KernelTestCase
         $userDTO = new UserDTO();
         $userDTO->username = 'test';
         $userDTO->password = 'test';
-        $userDTO->email = 'test@email.com';
+        $userDTO->email = 'admin@email.com.com';
 
         $user = $this->systemUnderTest->initUser($userDTO);
 
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals('test', $user->getUsername());
         $this->assertNotEquals('test', $user->getPassword());
-        $this->assertEquals('test@email.com', $user->getEmail());
+        $this->assertEquals('admin@email.com.com', $user->getEmail());
     }
 
     public function testUpdateUser()
@@ -49,7 +49,7 @@ class UserServiceTest extends KernelTestCase
         $user = new User(
             'test',
             'test',
-            'test@email.com'
+            'admin@email.com.com'
         );
 
         $this->systemUnderTest->updateUser($userDTO, $user);

@@ -15,11 +15,11 @@ class UserDTOTest extends TestCase
         $user = new User(
             'test',
             'test',
-            'test@email.com'
+            'admin@email.com.com'
         );
         $userDTO->createFromUser($user);
 
         $this->assertEquals('test', $userDTO->username);
-        $this->assertEquals('test@email.com', $userDTO->email);
+        $this->assertEquals('admin@email.com.com', $userDTO->email);
     }
 }
