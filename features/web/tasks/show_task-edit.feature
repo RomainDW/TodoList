@@ -11,3 +11,9 @@ Feature: show the task edit page
   Scenario: Show the task edit page when user is not logged
     When I am on "/tasks/1/edit"
     Then I should be on "/login"
+
+  @show_task_edit_404
+  Scenario:
+    Given I am logged in as simple user
+    When I am on "/tasks/99999999/edit"
+    Then I should see "Oops ! La tâche n'existe pas. "

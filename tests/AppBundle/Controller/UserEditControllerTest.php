@@ -65,4 +65,16 @@ class UserEditControllerTest extends MyTestCase
         $this->assertEquals(Response::HTTP_OK, $statusCode);
         $this->assertContains("Superbe ! L'utilisateur a bien été modifié", $crawler->filter('div.alert.alert-success')->text());
     }
+
+    public function testUserNotFound()
+    {
+        $this->logIn();
+        $this->client->request('GET', '/users/999999/edit');
+        $this->assertEquals(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
+        $this->assertTrue($this->client->getResponse()->isRedirect('/users'));
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+
+        $this->assertContains('Oops ! L\'utilisateur n\'existe pas.', $crawler->filter('div.alert.alert-danger')->text());
+    }
 }

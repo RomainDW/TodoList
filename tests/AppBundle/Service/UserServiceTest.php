@@ -7,7 +7,6 @@ use AppBundle\DTO\UserDTO;
 use AppBundle\Entity\User;
 use AppBundle\Exception\UserNotFoundException;
 use AppBundle\Service\UserService;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\AppBundle\MyTestCase;
 
 class UserServiceTest extends MyTestCase

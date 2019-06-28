@@ -21,7 +21,7 @@ class TaskVoter extends Voter
      *
      * @return bool True if the attribute and subject are supported, false otherwise
      */
-    protected function supports($attribute, $subject)
+    public function supports($attribute, $subject)
     {
         // if the attribute isn't one we support, return false
         if (!in_array($attribute, [self::DELETE])) {
@@ -44,7 +44,7 @@ class TaskVoter extends Voter
      *
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    public function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
         if (!$user instanceof User) {
