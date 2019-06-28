@@ -8,18 +8,19 @@ use AppBundle\Entity\User;
 use AppBundle\Exception\UserNotFoundException;
 use AppBundle\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Tests\AppBundle\MyTestCase;
 
-class UserServiceTest extends KernelTestCase
+class UserServiceTest extends MyTestCase
 {
     /**
      * @var UserService
      */
     private $systemUnderTest;
 
-    protected function setUp()
+    public function setUp()
     {
-        $kernel = self::bootKernel();
-        $doctrine = $kernel->getContainer()->get('doctrine');
+        parent::setUp();
+        $doctrine = $this->client->getContainer()->get('doctrine');
         $this->systemUnderTest = new UserService($doctrine);
     }
 
@@ -62,12 +63,26 @@ class UserServiceTest extends KernelTestCase
 
     public function testFind()
     {
-        $id = 1;
+        $id = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'admin@email.com'])->getId();
         $user = $this->systemUnderTest->find($id);
         $this->assertInstanceOf(User::class, $user);
 
-        $id = 999;
+        $id = 99999999999999;
         $this->expectException(UserNotFoundException::class);
         $this->systemUnderTest->find($id);
+    }
+
+    public function testSave()
+    {
+        $userToFind = new User(
+            'test',
+            'test',
+            'testSave@email.com'
+        );
+        $this->systemUnderTest->save($userToFind);
+
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'testSave@email.com']);
+
+        $this->assertSame($userToFind, $user);
     }
 }

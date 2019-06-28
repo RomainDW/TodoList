@@ -9,18 +9,19 @@ use AppBundle\Entity\User;
 use AppBundle\Exception\TaskNotFoundException;
 use AppBundle\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Tests\AppBundle\MyTestCase;
 
-class TaskServiceTest extends KernelTestCase
+class TaskServiceTest extends MyTestCase
 {
     /**
      * @var TaskService
      */
     private $systemUnderTest;
 
-    protected function setUp()
+    public function setUp()
     {
-        $kernel = self::bootKernel();
-        $doctrine = $kernel->getContainer()->get('doctrine');
+        parent::setUp();
+        $doctrine = $this->client->getContainer()->get('doctrine');
         $this->systemUnderTest = new TaskService($doctrine);
     }
 
@@ -54,7 +55,7 @@ class TaskServiceTest extends KernelTestCase
         $user = new User(
             'test',
             'test',
-            'admin@email.com.com'
+            'test@email.com'
         );
 
         $task = new Task('test', 'test', $user);
@@ -68,12 +69,49 @@ class TaskServiceTest extends KernelTestCase
 
     public function testFind()
     {
-        $id = 1;
+        $id = $this->task->getId();
         $task = $this->systemUnderTest->find($id);
         $this->assertInstanceOf(Task::class, $task);
 
-        $id = 999;
+        $id = 99999999999999999999;
         $this->expectException(TaskNotFoundException::class);
         $this->systemUnderTest->find($id);
+    }
+
+
+    public function testSave()
+    {
+        $user = new User(
+            'test',
+            'test',
+            'testSave@email.com'
+        );
+        $taskToFind = new Task('test save', 'test save', $user);
+        $this->entityManager->persist($user);
+        $this->systemUnderTest->save($taskToFind);
+
+        $task = $this->entityManager->getRepository(Task::class)->findOneBy(['title' => 'test save']);
+
+        $this->assertSame($taskToFind, $task);
+    }
+
+    public function testToggle()
+    {
+        $task = $this->task;
+
+        $task->toggle(false);
+        $this->assertFalse($task->isDone());
+
+        $this->systemUnderTest->toggle($task);
+        $this->assertTrue($task->isDone());
+    }
+
+    public function testRemove()
+    {
+        $this->systemUnderTest->remove($this->task);
+
+        $task = $this->entityManager->getRepository(Task::class)->findOneBy(['title' => 'Tâche n°1']);
+
+        $this->assertNull($task);
     }
 }
