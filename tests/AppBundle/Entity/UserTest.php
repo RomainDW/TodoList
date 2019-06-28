@@ -56,6 +56,6 @@ class UserTest extends MyTestCase
         $user = new User($username, $password, $email);
 
         $user->eraseCredentials();
-        $this->assertNull($user->getPassword());
+        $this->assertNotSame('test', $user->getPassword());
     }
 }

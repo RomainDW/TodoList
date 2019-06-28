@@ -11,3 +11,10 @@ Feature: show the task list
   Scenario: Show the task list page when user is not logged
     When I am on "/tasks"
     Then I should be on "/login"
+
+  @show_task_list_not_found
+  Scenario: Show the task list page when user is not logged
+    Given I am logged in as simple user
+    When I am on "/tasks?page=999"
+    Then the response status code should be 404
+    And the response should contain "La page n'existe pas"
