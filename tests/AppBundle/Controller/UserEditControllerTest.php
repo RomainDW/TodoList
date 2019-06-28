@@ -41,7 +41,7 @@ class UserEditControllerTest extends MyTestCase
     public function testFormRendering()
     {
         $this->logIn();
-        $crawler = $this->client->request('GET', '/users/1/edit');
+        $crawler = $this->client->request('GET', '/users/'.$this->user->getId().'/edit');
 
         $this->assertEquals(1, $crawler->filter('form')->count());
     }
