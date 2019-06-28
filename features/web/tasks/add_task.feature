@@ -1,7 +1,7 @@
 Feature: creation of a task
 
   Background:
-    Given I am logged in as simple user
+    Given I am logged in as admin
     And I am on "/tasks/create"
 
   @add_task_success
@@ -12,8 +12,6 @@ Feature: creation of a task
     And I press "Ajouter"
     Then I should be on "/tasks"
     And I should see "Superbe ! La tâche a bien été ajoutée."
-    And I should see "Test title"
-    And I should see "Test content"
 
   @add_task_fail
   Scenario: creation fail

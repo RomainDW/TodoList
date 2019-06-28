@@ -14,3 +14,9 @@ Feature: show the user edit page
     When I am on "/users/1/edit"
     Then the response status code should be 403
     And the response should contain "Access Denied"
+
+  @show_user_edit_404
+  Scenario:
+    Given I am logged in as admin
+    When I am on "/users/99999999/edit"
+    Then I should see "Oops ! L'utilisateur n'existe pas."

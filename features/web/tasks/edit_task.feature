@@ -1,11 +1,11 @@
-Feature: creation of a task
+Feature: edition of a task
 
   Background:
     Given I am logged in as simple user
     And I am on "/tasks/1/edit"
 
   @edit_task_success
-  Scenario: creation success
+  Scenario: edition success
     When I fill in the following:
       | task_title    | Test title   |
       | task_content  | Test content |
@@ -16,7 +16,7 @@ Feature: creation of a task
     And I should see "Test content"
 
   @edit_task_fail
-  Scenario: creation fail
+  Scenario: edition fail
     When I fill in the following:
       | task_title    | |
       | task_content  | |

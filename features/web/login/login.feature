@@ -4,7 +4,7 @@ Feature: login
   Scenario: Fill in the login form
     Given I am on "/login"
     When I fill in the following:
-    | email    | test@email.com |
+    | email    | user@email.com |
     | password | password       |
     And I press "Se connecter"
     Then I should be on "/"
