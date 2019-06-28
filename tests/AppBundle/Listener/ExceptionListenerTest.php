@@ -7,8 +7,9 @@ use AppBundle\Listener\ExceptionListener;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Tests\AppBundle\MyTestCase;
 
-class ExceptionListenerTest extends KernelTestCase
+class ExceptionListenerTest extends MyTestCase
 {
     /**
      * @var RouterInterface
@@ -22,10 +23,10 @@ class ExceptionListenerTest extends KernelTestCase
 
     public function setUp()
     {
-        $this->bootKernel();
+        parent::setUp();
 
-        $this->router = static::$kernel->getContainer()->get('router');
-        $this->flashBag = static::$kernel->getContainer()->get('session.flash_bag');
+        $this->router = $this->createMock(RouterInterface::class);
+        $this->flashBag = $this->createMock(FlashBagInterface::class);
     }
 
     public function testDependencies()

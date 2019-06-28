@@ -11,7 +11,7 @@ Feature: creation of a task
       | task_content  | Test content |
     And I press "Ajouter"
     Then I should be on "/tasks"
-    And I should see "Superbe ! La tâche a été bien été ajoutée."
+    And I should see "Superbe ! La tâche a bien été ajoutée."
     And I should see "Test title"
     And I should see "Test content"
 

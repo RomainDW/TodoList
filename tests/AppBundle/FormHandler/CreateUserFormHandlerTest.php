@@ -5,11 +5,11 @@ namespace Tests\AppBundle\FormHandler;
 
 use AppBundle\FormHandler\CreateUserFormHandler;
 use AppBundle\Service\UserService;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Tests\AppBundle\MyTestCase;
 
-class CreateUserFormHandlerTest extends KernelTestCase
+class CreateUserFormHandlerTest extends MyTestCase
 {
     /**
      * @var UserService
@@ -28,11 +28,11 @@ class CreateUserFormHandlerTest extends KernelTestCase
 
     public function setUp()
     {
-        $this->bootKernel();
+        parent::setUp();
 
         $this->userService = $this->createMock(UserService::class);
-        $this->validator = static::$kernel->getContainer()->get('validator');
-        $this->flashBag = static::$kernel->getContainer()->get('session.flash_bag');
+        $this->validator = $this->createMock(ValidatorInterface::class);
+        $this->flashBag = $this->createMock(FlashBagInterface::class);
     }
 
     public function testDependencies()

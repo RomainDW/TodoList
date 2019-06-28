@@ -2,15 +2,16 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Tests\AppBundle\UnitTestCase;
+use Tests\AppBundle\MyTestCase;
 
-class HomeControllerTest extends UnitTestCase
+class HomeControllerTest extends MyTestCase
 {
     public function testSecure()
     {
         $this->client->request('GET', '/');
 
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertTrue($this->client->getResponse()->isRedirect('/login'));
     }
 
     public function testLoggedIn()

@@ -3,9 +3,9 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Tests\AppBundle\UnitTestCase;
+use Tests\AppBundle\MyTestCase;
 
-class UserListControllerTest extends UnitTestCase
+class UserListControllerTest extends MyTestCase
 {
     public function testSecure()
     {

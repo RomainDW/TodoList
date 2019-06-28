@@ -30,8 +30,6 @@ class UserService
      */
     public function initUser(UserDTO $userDTO)
     {
-
-//        var_dump($userDTO->roles);die();
         $user = new User(
             $userDTO->username,
             $userDTO->password,

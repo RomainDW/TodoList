@@ -3,9 +3,9 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Tests\AppBundle\UnitTestCase;
+use Tests\AppBundle\MyTestCase;
 
-class TaskCreateControllerTest extends UnitTestCase
+class TaskCreateControllerTest extends MyTestCase
 {
     public function testSecure()
     {
@@ -31,5 +31,20 @@ class TaskCreateControllerTest extends UnitTestCase
         $crawler = $this->client->request('GET', '/tasks/create');
 
         $this->assertEquals(1, $crawler->filter('form')->count());
+    }
+
+    public function testTaskCreation()
+    {
+        $this->login();
+        $crawler = $this->client->request('GET', '/tasks/create');
+        $form = $crawler->selectButton('Ajouter')->form();
+        $form['task[title]'] = 'Test';
+        $form['task[content]'] = 'Contenu de test';
+        $this->task = $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+        $response = $this->client->getResponse();
+        $statusCode = $response->getStatusCode();
+        $this->assertEquals(200, $statusCode);
+        $this->assertContains("Superbe ! La tâche a bien été ajoutée", $crawler->filter('div.alert.alert-success')->text());
     }
 }

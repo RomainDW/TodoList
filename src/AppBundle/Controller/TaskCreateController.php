@@ -28,7 +28,7 @@ class TaskCreateController extends Controller
         $form->handleRequest($request);
 
         if ($formHandler->handle($form, $this->getUser())) {
-            $this->addFlash('success', 'La tâche a été bien été ajoutée.');
+            $this->addFlash('success', 'La tâche a bien été ajoutée.');
             return $this->redirectToRoute('task_list');
         }
 

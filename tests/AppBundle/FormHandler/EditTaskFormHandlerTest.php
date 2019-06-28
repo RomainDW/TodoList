@@ -8,8 +8,9 @@ use AppBundle\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Tests\AppBundle\MyTestCase;
 
-class EditTaskFormHandlerTest extends KernelTestCase
+class EditTaskFormHandlerTest extends MyTestCase
 {
     /**
      * @var TaskService
@@ -28,11 +29,11 @@ class EditTaskFormHandlerTest extends KernelTestCase
 
     public function setUp()
     {
-        $this->bootKernel();
+        parent::setUp();
 
         $this->taskService = $this->createMock(TaskService::class);
-        $this->validator = static::$kernel->getContainer()->get('validator');
-        $this->flashBag = static::$kernel->getContainer()->get('session.flash_bag');
+        $this->validator = $this->createMock(ValidatorInterface::class);
+        $this->flashBag = $this->createMock(FlashBagInterface::class);
     }
 
     public function testDependencies()
