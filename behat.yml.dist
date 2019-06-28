@@ -16,3 +16,15 @@ default:
             sessions:
                 default:
                     symfony2: ~
+        LeanPHP\Behat\CodeCoverage\Extension:
+            drivers:
+                - local
+            filter:
+                whitelist:
+                    include:
+                        directories:
+                            'src': ~
+            report:
+                format:   html
+                options:
+                    target: web/coverage-behat
