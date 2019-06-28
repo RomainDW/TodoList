@@ -34,7 +34,7 @@ class MyTestCase extends KernelTestCase
 
     public function setUp()
     {
-        static::bootKernel();
+        $this->bootKernel();
         $this->client = static::$kernel->getContainer()->get('test.client');
         $this->client->setServerParameters([]);
         $container = $this->client->getContainer();
