@@ -40,11 +40,11 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="tasks")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
-    public function __construct($title, $content, User $user, $isDone = false)
+    public function __construct($title, $content, ?User $user, $isDone = false)
     {
         $this->createdAt = new Datetime();
         $this->isDone = $isDone;
