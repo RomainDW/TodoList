@@ -34,8 +34,8 @@ class MyTestCase extends KernelTestCase
 
     public function setUp()
     {
-        $this->bootKernel();
-        $this->client = static::$kernel->getContainer()->get('test.client');
+        $kernel = $this->bootKernel();
+        $this->client = $kernel->getContainer()->get('test.client');
         $this->client->setServerParameters([]);
         $container = $this->client->getContainer();
         $doctrine = $container->get('doctrine');
