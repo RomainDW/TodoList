@@ -15,7 +15,7 @@ class TaskRepository extends ServiceEntityRepository
         parent::__construct($registry, Task::class);
     }
 
-    public function findByPage($page, $maxResult)
+    public function findByPage(int $page, int $maxResult)
     {
         $firstResult = ($page - 1) * $maxResult;
         return $this->createQueryBuilder('t')
@@ -34,7 +34,7 @@ class TaskRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public function findMaxNumberOfPage($maxResult)
+    public function findMaxNumberOfPage(int $maxResult)
     {
         $req = $this->createQueryBuilder('t')
             ->select('COUNT(t)')

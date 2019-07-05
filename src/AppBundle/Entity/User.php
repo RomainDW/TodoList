@@ -51,8 +51,12 @@ class User implements UserInterface
      * @param $email
      * @param array $roles
      */
-    public function __construct($username, $password, $email, array $roles = ['ROLE_USER'])
-    {
+    public function __construct(
+        string $username,
+        string $password,
+        string $email,
+        array $roles = ['ROLE_USER']
+    ) {
         $this->tasks = new ArrayCollection();
         $this->username = $username;
         $this->password = password_hash($password, PASSWORD_BCRYPT);
@@ -60,8 +64,12 @@ class User implements UserInterface
         $this->roles = $roles;
     }
 
-    public function update($username, $password, $email, array $roles = ['ROLE_USER'])
-    {
+    public function update(
+        string $username,
+        string $password,
+        string $email,
+        array $roles = ['ROLE_USER']
+    ) {
         $this->username = $username;
         $this->password = password_hash($password, PASSWORD_BCRYPT);
         $this->email = $email;
