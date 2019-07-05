@@ -73,6 +73,24 @@ class AppFixtures extends Fixture
             $manager->persist($task);
         }
 
+        for ($i = 0; $i < 5; $i++) {
+            $task = new Task(
+                'Tâche sans utilisateur',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                labore et dolore magna aliqua. Faucibus nisl tincidunt eget nullam non. Ullamcorper eget nulla facilisi 
+                etiam dignissim diam quis. Mauris sit amet massa vitae tortor. Nulla facilisi cras fermentum odio eu 
+                feugiat pretium nibh ipsum. Congue mauris rhoncus aenean vel elit. Dui sapien eget mi proin sed libero 
+                enim sed faucibus. Sit amet risus nullam eget felis. Semper viverra nam libero justo laoreet sit amet 
+                cursus sit. Cras adipiscing enim eu turpis egestas pretium aenean. Auctor elit sed vulputate mi. Blandit 
+                massa enim nec dui nunc mattis enim ut. Volutpat est velit egestas dui id ornare arcu. Massa eget egestas 
+                purus viverra accumsan in. Habitant morbi tristique senectus et netus et malesuada fames. Id faucibus 
+                nisl tincidunt eget nullam non nisi. Aliquam ut porttitor leo a diam.',
+                null
+            );
+
+            $manager->persist($task);
+        }
+
         $manager->flush();
     }
 }
