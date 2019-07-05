@@ -59,22 +59,22 @@ class Task
         $this->content = $content;
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function isDone()
+    public function isDone(): bool
     {
         return $this->isDone;
     }
@@ -84,7 +84,7 @@ class Task
         $this->isDone = $flag;
     }
 
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }

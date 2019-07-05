@@ -27,7 +27,7 @@ class TaskEditController extends Controller
      * @return RedirectResponse|Response
      * @throws TaskNotFoundException
      */
-    public function editAction(Request $request, EditTaskFormHandler $editTaskFormHandler, TaskService $taskService)
+    public function editAction(Request $request, EditTaskFormHandler $editTaskFormHandler, TaskService $taskService): RedirectResponse
     {
         /** @var Task $task */
         $task = $taskService->find($request->attributes->get('id'));

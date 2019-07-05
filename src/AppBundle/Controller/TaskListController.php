@@ -23,7 +23,7 @@ class TaskListController extends Controller
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request): Response
     {
         $repository = $this->getDoctrine()->getRepository(Task::class);
 

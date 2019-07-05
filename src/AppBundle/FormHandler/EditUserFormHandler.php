@@ -37,7 +37,7 @@ class EditUserFormHandler
         $this->userService = $userService;
     }
 
-    public function handle(FormInterface $form, User $user)
+    public function handle(FormInterface $form, User $user): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->updateUser($form->getData(), $user);

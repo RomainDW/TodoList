@@ -21,7 +21,7 @@ class UserCreateController extends Controller
      * @param CreateUserFormHandler $formHandler
      * @return RedirectResponse|Response
      */
-    public function createAction(Request $request, CreateUserFormHandler $formHandler)
+    public function createAction(Request $request, CreateUserFormHandler $formHandler): Response
     {
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
