@@ -31,6 +31,14 @@
                             <button class="btn btn-danger btn-sm">Supprimer</button>
                         </form>
                     {% endif %}
+                    <div class="author">
+                        <strong class="author-label">Auteur :</strong>
+                        {% if task.user %}
+                            {{ task.user.username }}
+                        {% else %}
+                            Anonyme
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
