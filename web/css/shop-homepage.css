@@ -106,3 +106,7 @@ h1 {
 .row.equal [class*="col-"] {
     margin-bottom: 30px;
 }
+
+.author {
+    width: 100%;
+}
