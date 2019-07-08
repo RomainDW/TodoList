@@ -28,7 +28,7 @@ mailer_password (null):
 secret (ThisTokenIsNotSoSecretChangeIt): 
 database_path ('%kernel.project_dir%/data.sqlite'): 
 ```
-Provide the database information.
+Provide the database information and change the secret token.
 
 Then, let's create the database and load some fixtures :
 ```shell
