@@ -14,7 +14,7 @@ class UserListController extends Controller
      *
      * @Route("/users", name="user_list")
      */
-    public function listAction(): Response
+    public function list(): Response
     {
         $users = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
 

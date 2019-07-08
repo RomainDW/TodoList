@@ -21,7 +21,7 @@ class TaskCreateController extends Controller
      * @param CreateTaskFormHandler $formHandler
      * @return RedirectResponse|Response
      */
-    public function createAction(Request $request, CreateTaskFormHandler $formHandler): Response
+    public function create(Request $request, CreateTaskFormHandler $formHandler): Response
     {
         $form = $this->createForm(TaskType::class);
 

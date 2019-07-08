@@ -21,7 +21,7 @@ class TaskDeleteController extends Controller
      * @return RedirectResponse
      * @throws TaskNotFoundException
      */
-    public function deleteTaskAction(Request $request, TaskService $taskService): RedirectResponse
+    public function deleteTask(Request $request, TaskService $taskService): RedirectResponse
     {
         /** @var Task $task */
         $task = $taskService->find($request->attributes->get('id'));
