@@ -70,3 +70,6 @@ OR you can run Behat tests with this command :
 ```shell
 php vendor/bin/behat
 ```
+
+###  Test coverage
+You can access the **PHPUnit code coverage** at [/coverage-phpunit/index.html](/web/coverage-phpunit/index.html) or the **Behat code coverage** at [/coverage-behat/index.html](/web/coverage-behat/index.html)
