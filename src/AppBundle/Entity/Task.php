@@ -44,8 +44,12 @@ class Task
      */
     private $user;
 
-    public function __construct($title, $content, ?User $user, $isDone = false)
-    {
+    public function __construct(
+        string $title,
+        string $content,
+        ?User $user,
+        bool $isDone = false
+    ) {
         $this->createdAt = new Datetime();
         $this->isDone = $isDone;
         $this->title = $title;
@@ -53,28 +57,30 @@ class Task
         $this->user = $user;
     }
 
-    public function update($title, $content)
-    {
+    public function update(
+        string $title,
+        string $content
+    ) {
         $this->title = $title;
         $this->content = $content;
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function isDone()
+    public function isDone(): bool
     {
         return $this->isDone;
     }
@@ -84,7 +90,7 @@ class Task
         $this->isDone = $flag;
     }
 
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }

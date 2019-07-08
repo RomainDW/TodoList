@@ -4,6 +4,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserListController extends Controller
@@ -13,7 +14,7 @@ class UserListController extends Controller
      *
      * @Route("/users", name="user_list")
      */
-    public function listAction()
+    public function list(): Response
     {
         $users = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
 

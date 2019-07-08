@@ -37,7 +37,7 @@ class EditTaskFormHandler
         $this->flashBag = $flashBag;
     }
 
-    public function handle(FormInterface $form, Task $task)
+    public function handle(FormInterface $form, Task $task): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->taskService->updateTask($form->getData(), $task);

@@ -21,7 +21,7 @@ class TaskVoter extends Voter
      *
      * @return bool True if the attribute and subject are supported, false otherwise
      */
-    public function supports($attribute, $subject)
+    public function supports($attribute, $subject): bool
     {
         // if the attribute isn't one we support, return false
         if (!in_array($attribute, [self::DELETE])) {
@@ -44,7 +44,7 @@ class TaskVoter extends Voter
      *
      * @return bool
      */
-    public function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    public function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
         if (!$user instanceof User) {
@@ -61,7 +61,12 @@ class TaskVoter extends Voter
         throw new LogicException('This code should not be reached!');
     }
 
-    private function canDelete(Task $task, User $user)
+    /**
+     * @param Task $task
+     * @param User $user
+     * @return bool
+     */
+    private function canDelete(Task $task, User $user): bool
     {
         // to get the entity of the user who owns this data object
         if (in_array('ROLE_ADMIN', $user->getRoles()) && $task->getUser() == null) {

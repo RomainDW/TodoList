@@ -36,7 +36,7 @@ class CreateUserFormHandler
         $this->flashBag = $flashBag;
     }
 
-    public function handle(FormInterface $form)
+    public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->userService->initUser($form->getData());

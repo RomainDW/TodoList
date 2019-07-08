@@ -22,8 +22,10 @@ class TaskToggleController extends Controller
      * @return RedirectResponse
      * @throws TaskNotFoundException
      */
-    public function toggleTaskAction(Request $request, TaskService $taskService)
-    {
+    public function toggleTask(
+        Request $request,
+        TaskService $taskService
+    ): RedirectResponse {
         /** @var Task $task */
         $task = $taskService->find($request->attributes->get('id'));
 

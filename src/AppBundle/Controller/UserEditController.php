@@ -26,8 +26,11 @@ class UserEditController extends Controller
      * @return RedirectResponse|Response
      * @throws UserNotFoundException
      */
-    public function editAction(Request $request, EditUserFormHandler $formHandler, UserService $userService)
-    {
+    public function edit(
+        Request $request,
+        EditUserFormHandler $formHandler,
+        UserService $userService
+    ): Response {
         /** @var User $user */
         $user = $userService->find($request->attributes->get('id'));
         $userDTO = new UserDTO();

@@ -15,7 +15,7 @@ class SecurityController extends Controller
      * @Route("/login", name="login")
      * @return Response
      */
-    public function loginAction()
+    public function login(): Response
     {
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $this->addFlash('warning', 'Vous êtes déjà connecté');

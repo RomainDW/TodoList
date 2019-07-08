@@ -37,7 +37,7 @@ class CreateTaskFormHandler
         $this->flashBag = $flashBag;
     }
 
-    public function handle(FormInterface $form, User $user)
+    public function handle(FormInterface $form, User $user): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $this->taskService->initTask($form->getData(), $user);
