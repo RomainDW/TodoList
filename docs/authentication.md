@@ -1,4 +1,4 @@
-#  Authentication
+# Authentication
 This documentation explains how authentication works on the site.
 
 ## Security set up
@@ -33,16 +33,16 @@ security:
         - { path: ^/users, roles: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }
 ```
-###  Firewalls
+### Firewalls
 The `firewalls` key is the heart of the security configuration. The `dev` firewall isn't important, it just makes sure that Symfony's development tools - which live under URLs like `/_profiler` and `/_wdt` aren't blocked by the security.
 
-####  The main firewall
+#### The main firewall
 All other URLs will be handled by the `main` firewall.
 In this case, the `pattern` key in the `main` firewall is equal to `^/`, which means that it matches all the URLs.
 But this does not mean that every URL requires authentication :  
 the `anonymous` key with the value `~` means that you can be authenticated as anonymous. (in fact, we'll see later that all routes require authentication, except the login page.)
 
-####  Log out
+#### Log out
 The firewall handle the log out system automatically with the `logout` key.
 ```yaml
 # app/config/security.yml
@@ -63,7 +63,7 @@ We can see it in `app/config/routing.yml` :
 logout:
     path: /logout
 ```
-###  Custom Authentication System with Guard
+### Custom Authentication System with Guard
 The Guard component is used in this case to customize the log in system with a token to counter CSRF vulnerabilities.
 ```yaml
 # app/config/security.yml
@@ -124,7 +124,7 @@ public function loginAction()
 }
 ```
 
-###  Providers
+### Providers
 User providers are PHP classes related to Symfony Security that have two jobs: **Reload the User from the Session** & **Load the User for some Feature**
 
 In the `providers` key we have an app_user_provider.  
@@ -144,7 +144,7 @@ This is the most common user provider for traditional web applications. Users ar
     # ...
 ```
 
-###  Access control
+### Access control
 The most basic way to secure part of the application is to secure an entire URL pattern.
 ```yaml
 # app/config/security.yml
@@ -168,7 +168,7 @@ You can define as many URL patterns as you need - each is a regular expression. 
 
 Prepending the path with `^` means that only URLs beginning with the pattern are matched. For example, a path of `/admin` (without the `^`) would match `/admin/foo` but would also match URLs like `/foo/admin`.
 
-####  Access Control in Templates
+#### Access Control in Templates
 If you want to check if the current user has a role inside a template, use the built-in is_granted() helper function:
 ```twig
 {% if is_granted('ROLE_ADMIN') %}
@@ -176,7 +176,7 @@ If you want to check if the current user has a role inside a template, use the b
 {% endif %}
 ```
 
-##  The User entity
+## The User entity
 The user is represented by the **user entity** in `/src/AppBundle/Entity/User.php`.  
 The user entity has several properties :
 -  **id** : the primary key
