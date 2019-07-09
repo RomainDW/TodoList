@@ -68,7 +68,7 @@ class TaskService
         $manager = $this->doctrine->getManager();
         $task = $manager->getRepository(Task::class)->find($id);
 
-        if (is_null($task)) {
+        if (null === $task) {
             throw new TaskNotFoundException("La tâche n'existe pas.");
         }
 
