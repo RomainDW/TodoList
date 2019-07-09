@@ -179,8 +179,8 @@ If you want to check if the current user has a role inside a template, use the b
 ## The User entity
 The user is represented by the **user entity** in `/src/AppBundle/Entity/User.php`.  
 The user entity has several properties :
--  **id** : the primary key
--  **username** : the name of the user, not used in the login form
--  **email** : the email of the user, used in the login form and is unique
--  **password** : the user password, encrypted by the BCRYPT algorithm
--  **roles** : the user roles, used for the access control
+-   **id** : the primary key
+-   **username** : the name of the user, not used in the login form
+-   **email** : the email of the user, used in the login form and is unique
+-   **password** : the user password, encrypted by the BCRYPT algorithm
+-   **roles** : the user roles, used for the access control
