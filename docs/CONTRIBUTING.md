@@ -8,18 +8,18 @@ copy of the repository in your own GitHub account and you’ll see a note that i
 ![Alt text](../src/AppBundle/Resources/img/fork.png "Fork example")
 
 Now you need a copy locally, so find the clone url in the right hand column and use that to clone locally using a terminal:  
-```
+```shell
 git clone https://github.com/{your_github_username}/TodoList.git
 ```
 Then go to the new project's directory:
-```
+```shell
 cd TodoList
 ```
 Finally, in this stage, you need to set up a new remote that points to the original project so that you can grab any 
 changes and bring them into your local copy. Firstly clock on the link to the original repository – it’s labeled "Forked 
 from" at the top of the GitHub page. This takes you back to the projects main GitHub page, so you can find the "clone URL" 
 and use it to create the new remote, which we’ll call **upstream**.
-```
+```shell
 git remote add upstream https://github.com/RomainDW/TodoList.git
 ```
 You now have two remotes for this project on disk:
@@ -63,7 +63,7 @@ way, including formatting issues, as your PR will probably be rejected.**
 To create a PR you need to push your branch to the origin remote and then press some buttons on GitHub.
 
 To push a new branch:
-``` shell
+```shell
 git push -u origin hotfix/readme-update
 ```
 This will create the branch on your GitHub project. The -u flag links this branch with the remote one, so that in the 
