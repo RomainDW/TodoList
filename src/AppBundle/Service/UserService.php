@@ -67,7 +67,7 @@ class UserService
         $manager = $this->doctrine->getManager();
         $user = $manager->getRepository(User::class)->find($id);
 
-        if (is_null($user)) {
+        if (null === $user) {
             throw new UserNotFoundException("L'utilisateur n'existe pas.");
         }
 
