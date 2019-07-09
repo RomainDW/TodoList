@@ -1,9 +1,9 @@
-#  TodoList
+# TodoList
 Project 8 - PHP / Symfony Application Developer Path - OpenClassrooms
 
-https://openclassrooms.com/projects/ameliorer-un-projet-existant-1
+[https://openclassrooms.com/projects/ameliorer-un-projet-existant-1](https://openclassrooms.com/projects/ameliorer-un-projet-existant-1)
 
-##  Installation
+## Installation
 Clone :
 ```shell
 git clone https://github.com/RomainDW/TodoList.git
@@ -55,7 +55,7 @@ You can log in with one of the user provided by the fixtures :
 | user@email.com  | password    | ROLE_USER  |
 | admin@email.com | password    | ROLE_ADMIN |
 
-##  Tests
+## Tests
 To run the tests, you must first create the test database :
 ```shell
 php bin/console doctrine:database:create --env=test
@@ -71,5 +71,5 @@ OR you can run Behat tests with this command :
 php vendor/bin/behat
 ```
 
-###  Test coverage
+### Test coverage
 You can access the **PHPUnit code coverage** at [/coverage-phpunit/index.html](/web/coverage-phpunit/index.html) or the **Behat code coverage** at [/coverage-behat/index.html](/web/coverage-behat/index.html)
