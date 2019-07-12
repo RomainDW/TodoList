@@ -79,7 +79,11 @@ Go ahead and press the button!
 On the pull request page, ensure that the **"base fork"** points to the correct repository and branch. Then ensure that you provide a good, 
 succinct title for your pull request and explain why you have created it in the description box. Add any relevant issue numbers if you have them.
 
-Then,  press the **"Create pull request"** button and you're done.
+Then,  press the **"Create pull request"** button.
+
+Now **Codacy** will inspect the code and check that if it is "clean". If there are errors, correct them otherwise your pull request will be refused.
+
+![Codacy check](../src/AppBundle/Resources/img/no_confilcts.png "PUll request example")
 
 ## Step 5: Review by the maintainers
 For your work to be integrated into the project, the maintainers will review your work and either request changes or merge it.
