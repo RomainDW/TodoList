@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/13eff04c19594a6fa860c59a35a422d3)](https://www.codacy.com/app/RomainDW/TodoList?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RomainDW/TodoList&amp;utm_campaign=Badge_Grade)
 # TodoList
 Project 8 - PHP / Symfony Application Developer Path - OpenClassrooms
 
