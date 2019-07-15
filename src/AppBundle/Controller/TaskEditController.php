@@ -31,7 +31,7 @@ class TaskEditController extends Controller
         Request $request,
         EditTaskFormHandler $editTaskFormHandler,
         TaskService $taskService
-    ): RedirectResponse {
+    ): Response {
         /** @var Task $task */
         $task = $taskService->find($request->attributes->get('id'));
         $taskDTO = new TaskDTO();
