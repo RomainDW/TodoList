@@ -94,4 +94,13 @@ class Task
     {
         return $this->user;
     }
+
+    public function setAnonymousUser(User $user)
+    {
+        if (!$user->getEmail() == 'anonymous@anonymous.com') {
+            return;
+        }
+
+        $this->user = $user;
+    }
 }
