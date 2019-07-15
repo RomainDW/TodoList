@@ -38,6 +38,7 @@ class AnonymousUserCommand extends Command
         $helper = $this->getHelper('question');
         $question = new ConfirmationQuestion('Do you want to link tasks that do not belong to anyone to an anonymous user ?(y/N) ', false);
         if (!$helper->ask($input, $output, $question)) {
+            $output->writeln('Ok bye.');
             return;
         }
 
