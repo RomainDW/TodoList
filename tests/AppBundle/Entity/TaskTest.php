@@ -72,4 +72,19 @@ class TaskTest extends MyTestCase
         $this->assertEquals($titleUpdate, $task->getTitle());
         $this->assertEquals($contentUpdate, $task->getContent());
     }
+
+    public function testSetAnonymousUser()
+    {
+        $task = $this->task;
+        $user = new User(
+            'Anonymous',
+            'anonymous',
+            'random@email.com',
+            ['IS_AUTHENTICATED_ANONYMOUSLY']
+        );
+
+        $task->setAnonymousUser($user);
+
+        $this->assertNotEquals($task->getUser(), $user);
+    }
 }

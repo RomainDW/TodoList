@@ -114,4 +114,14 @@ class TaskServiceTest extends MyTestCase
 
         $this->assertNull($task);
     }
+
+    public function testLinkToAnonymous()
+    {
+        $message = $this->systemUnderTest->linkToAnonymous();
+        $this->assertEquals('Done.', $message);
+
+        // There is no more tasks without users
+        $messageAfter = $this->systemUnderTest->linkToAnonymous();
+        $this->assertEquals('There are no tasks belonging to anyone', $messageAfter);
+    }
 }

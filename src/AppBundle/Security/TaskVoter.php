@@ -68,11 +68,12 @@ class TaskVoter extends Voter
      */
     private function canDelete(Task $task, User $user): bool
     {
-        // to get the entity of the user who owns this data object
-        if (in_array('ROLE_ADMIN', $user->getRoles()) && $task->getUser() == null) {
+        // if the logged user is admin & the owner of the task is anonymous, return true
+        if (in_array('ROLE_ADMIN', $user->getRoles()) && $task->getUser()->getEmail() == 'anonymous@anonymous.com') {
             return true;
         }
 
+        // if the logged user own the task, return true
         return $user === $task->getUser();
     }
 }

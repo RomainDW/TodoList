@@ -11,6 +11,7 @@ use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
@@ -32,9 +33,15 @@ class MyTestCase extends KernelTestCase
      */
     protected $entityManager;
 
+    /**
+     * @var Application
+     */
+    protected $application;
+
     public function setUp()
     {
         $kernel = $this->bootKernel();
+        $this->application = new Application($kernel);
         $this->client = $kernel->getContainer()->get('test.client');
         $this->client->setServerParameters([]);
         $container = $this->client->getContainer();
