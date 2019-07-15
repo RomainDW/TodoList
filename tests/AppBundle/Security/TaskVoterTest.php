@@ -122,4 +122,31 @@ class TaskVoterTest extends MyTestCase
 
         $this->assertFalse($taskVoter->voteOnAttribute('test', $task, $token));
     }
+
+    public function testDeleteAdmin()
+    {
+        $taskVoter = new TaskVoter();
+        $anonymous = new User(
+            'Anonymous',
+            'Anonymous',
+            'anonymous@anonymous.com'
+        );
+        $admin = new User(
+            'test',
+            'password',
+            'test@email.com',
+            ['ROLE_ADMIN']
+        );
+
+        $task = new Task(
+            'test',
+            'test',
+            $anonymous
+        );
+
+        $token = $this->createMock(TokenInterface::class);
+        $token->method('getUser')->willReturn($admin);
+
+        $this->assertTrue($taskVoter->voteOnAttribute('delete', $task, $token));
+    }
 }
