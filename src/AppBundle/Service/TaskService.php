@@ -81,4 +81,35 @@ class TaskService
         $manager = $this->doctrine->getManager();
         $manager->flush();
     }
+
+    public function linkToAnonymous()
+    {
+        $manager = $this->doctrine->getManager();
+        $tasks = $manager->getRepository(Task::class)->findBy(['user' => null]);
+        if ($tasks == null) {
+            return 'There are no tasks belonging to anyone';
+        }
+        $user = $manager->getRepository(User::class)->findOneBy(['email' => 'anonymous@anonymous.com']);
+
+        if ($user == null) {
+            $user = new User(
+                'Anonymous',
+                'anonymous',
+                'anonymous@anonymous.com',
+                ['IS_AUTHENTICATED_ANONYMOUSLY']
+            );
+            $manager->persist($user);
+            $manager->flush();
+        }
+
+        /** @var Task $task */
+        foreach ($tasks as $task) {
+            $task->setAnonymousUser($user);
+            $manager->persist($task);
+        }
+
+        $manager->flush();
+
+        return 'Done.';
+    }
 }
