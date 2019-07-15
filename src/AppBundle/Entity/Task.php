@@ -97,7 +97,7 @@ class Task
 
     public function setAnonymousUser(User $user)
     {
-        if (!$user->getEmail() == 'anonymous@anonymous.com') {
+        if ($user->getEmail() != 'anonymous@anonymous.com') {
             return;
         }
 
